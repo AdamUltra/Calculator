@@ -140,6 +140,7 @@ def nine_():
     Bar.pack(side='top')
     Bar.update()
 
+
 def add_():
     global oper, Bar, bar
     oper = '+'
