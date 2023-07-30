@@ -16,7 +16,10 @@ Bar.pack(side='top')
 # Calculate
 def calc():
     global result, numbers, numbers2
-    result = int(numbers) + int(numbers2)
+    if '.' not in numbers and numbers2:
+        result = int(numbers) + int(numbers2)
+    elif '.' in numbers or numbers2:
+        result = float(numbers) + float(numbers2)
     Result = Label(win, text=f'{result}', font='bold')
     Result.pack(side='top')
     Result.update()
@@ -141,6 +144,32 @@ def nine_():
     Bar.update()
 
 
+def zero_():
+    global numbers, numbers2, Bar, bar
+    if '+' not in oper:
+        numbers = numbers + '0'
+    else:
+        numbers2 = numbers2 + '0'
+    bar = numbers + oper + numbers2
+    Bar.destroy()
+    Bar = Label(win, text=f'{bar}', font='bold')
+    Bar.pack(side='top')
+    Bar.update()
+
+
+def decimal_():
+    global numbers, numbers2, Bar, bar
+    if '+' not in oper:
+        numbers = numbers + '.'
+    else:
+        numbers2 = numbers2 + '.'
+    bar = numbers + oper + numbers2
+    Bar.destroy()
+    Bar = Label(win, text=f'{bar}', font='bold')
+    Bar.pack(side='top')
+    Bar.update()
+
+
 def add_():
     global oper, Bar, bar
     oper = '+'
@@ -179,6 +208,12 @@ eight.place(x=550, y=350)
 
 nine = Button(win, text='9', font='bold', command=nine_, height=2, width=4)
 nine.place(x=600, y=350)
+
+zero = Button(win, text='0', font='bold', command=zero_, height=2, width=4)
+zero.place(x=550, y=400)
+
+dot = Button(win, text='.', font='bold', command=decimal_, height=2, width=4)
+dot.place(x=600, y=400)
 
 add = Button(win, text='+', font='bold', command=add_, height=2, width=4)
 add.place(x=650, y=300)
