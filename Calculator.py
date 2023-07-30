@@ -8,6 +8,8 @@ numbers = ''
 numbers2 = ''
 oper = ''
 bar = ''
+Bar2 = []
+operations = ['+', '-', '×', '÷']
 
 Bar = Label(win, text=f'{bar}', font='bold')
 Bar.pack(side='top')
@@ -15,11 +17,30 @@ Bar.pack(side='top')
 
 # Calculate
 def calc():
-    global result, numbers, numbers2
-    if '.' not in numbers and numbers2:
-        result = int(numbers) + int(numbers2)
-    elif '.' in numbers or numbers2:
-        result = float(numbers) + float(numbers2)
+    global numbers, numbers2, result
+    if '+' in oper:
+        if '.' not in numbers and numbers2:
+            result = int(numbers) + int(numbers2)
+        elif '.' in numbers or numbers2:
+            result = float(numbers) + float(numbers2)
+
+    elif '-' in oper:
+        if '.' not in numbers and numbers2:
+            result = int(numbers) - int(numbers2)
+        elif '.' in numbers or numbers2:
+            result = float(numbers) - float(numbers2)
+
+    elif '×' in oper:
+        if '.' not in numbers and numbers2:
+            result = int(numbers) * int(numbers2)
+        elif '.' in numbers or numbers2:
+            result = float(numbers) * float(numbers2)
+
+    elif '÷' in oper:
+        if '.' not in numbers and numbers2:
+            result = int(numbers) // int(numbers2)
+        elif '.' in numbers or numbers2:
+            result = float(numbers) / float(numbers2)
     Result = Label(win, text=f'{result}', font='bold')
     Result.pack(side='top')
     Result.update()
@@ -28,7 +49,7 @@ def calc():
 # function numbers
 def one_():
     global numbers, oper, numbers2, Bar, bar
-    if '+' not in oper:
+    if oper not in operations:
         numbers = numbers + '1'
     else:
         numbers2 = numbers2 + '1'
@@ -42,7 +63,7 @@ def one_():
 
 def two_():
     global numbers, numbers2, Bar, bar
-    if '+' not in oper:
+    if oper not in operations:
         numbers = numbers + '2'
     else:
         numbers2 = numbers2 + '2'
@@ -55,7 +76,7 @@ def two_():
 
 def three_():
     global numbers, numbers2, Bar, bar
-    if '+' not in oper:
+    if oper not in operations:
         numbers = numbers + '3'
     else:
         numbers2 = numbers2 + '3'
@@ -68,7 +89,7 @@ def three_():
 
 def four_():
     global numbers, numbers2, Bar, bar
-    if '+' not in oper:
+    if oper not in operations:
         numbers = numbers + '4'
     else:
         numbers2 = numbers2 + '4'
@@ -81,7 +102,7 @@ def four_():
 
 def five_():
     global numbers, numbers2, Bar, bar
-    if '+' not in oper:
+    if oper not in operations:
         numbers = numbers + '5'
     else:
         numbers2 = numbers2 + '5'
@@ -94,7 +115,7 @@ def five_():
 
 def six_():
     global numbers, numbers2, Bar, bar
-    if '+' not in oper:
+    if oper not in operations:
         numbers = numbers + '6'
     else:
         numbers2 = numbers2 + '6'
@@ -107,7 +128,7 @@ def six_():
 
 def seven_():
     global numbers, numbers2, Bar, bar
-    if '+' not in oper:
+    if oper not in operations:
         numbers = numbers + '7'
     else:
         numbers2 = numbers2 + '7'
@@ -120,7 +141,7 @@ def seven_():
 
 def eight_():
     global numbers, numbers2, Bar, bar
-    if '+' not in oper:
+    if oper not in operations:
         numbers = numbers + '8'
     else:
         numbers2 = numbers2 + '8'
@@ -133,7 +154,7 @@ def eight_():
 
 def nine_():
     global numbers, numbers2, Bar, bar
-    if '+' not in oper:
+    if oper not in operations:
         numbers = numbers + '9'
     else:
         numbers2 = numbers2 + '9'
@@ -146,7 +167,7 @@ def nine_():
 
 def zero_():
     global numbers, numbers2, Bar, bar
-    if '+' not in oper:
+    if oper not in operations:
         numbers = numbers + '0'
     else:
         numbers2 = numbers2 + '0'
@@ -159,7 +180,7 @@ def zero_():
 
 def decimal_():
     global numbers, numbers2, Bar, bar
-    if '+' not in oper:
+    if '+' or '-' not in oper:
         numbers = numbers + '.'
     else:
         numbers2 = numbers2 + '.'
@@ -170,6 +191,7 @@ def decimal_():
     Bar.update()
 
 
+# Operator functions
 def add_():
     global oper, Bar, bar
     oper = '+'
@@ -179,6 +201,35 @@ def add_():
     Bar.pack(side='top')
     Bar.update()
 
+
+def subtract_():
+    global oper, Bar, bar
+    oper = '-'
+    bar = numbers + oper + numbers2
+    Bar.destroy()
+    Bar = Label(win, text=f'{bar}', font='bold')
+    Bar.pack(side='top')
+    Bar.update()
+
+
+def multiply_():
+    global oper, Bar, bar
+    oper = '×'
+    bar = numbers + oper + numbers2
+    Bar.destroy()
+    Bar = Label(win, text=f'{bar}', font='bold')
+    Bar.pack(side='top')
+    Bar.update()
+
+
+def divide_():
+    global oper, Bar, bar
+    oper = '÷'
+    bar = numbers + oper + numbers2
+    Bar.destroy()
+    Bar = Label(win, text=f'{bar}', font='bold')
+    Bar.pack(side='top')
+    Bar.update()
 
 # Numbers
 
@@ -217,6 +268,15 @@ dot.place(x=600, y=400)
 
 add = Button(win, text='+', font='bold', command=add_, height=2, width=4)
 add.place(x=650, y=300)
+
+subtract = Button(win, text='-', font='bold', command=subtract_, height=2, width=4)
+subtract.place(x=650, y=250)
+
+multiply = Button(win, text='×', font='bold', command=multiply_, height=2, width=4)
+multiply.place(x=600, y=200)
+
+divide = Button(win, text='÷', font='bold', command=divide_, height=2, width=4)
+divide.place(x=550, y=200)
 
 equal = Button(win, text='=', font='bold', command=calc, height=5, width=4)
 equal.place(x=650, y=350)
