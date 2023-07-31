@@ -20,7 +20,7 @@ Bar.pack(side='top')
 
 # Calculate
 def calc():
-    global numbers, numbers2, result
+    global numbers, numbers2, result, Result
     if '+' in oper:
         if '.' not in numbers and numbers2:
             result = int(numbers) + int(numbers2)
@@ -44,6 +44,8 @@ def calc():
             result = int(numbers) // int(numbers2)
         elif '.' in numbers or numbers2:
             result = float(numbers) / float(numbers2)
+
+    Result.destroy()
     Result = Label(win, text=f'{result}', font='bold')
     Result.pack(side='top')
     Result.update()
@@ -271,6 +273,23 @@ def backspace_():
     Bar.update()
 
 
+def ac_():
+    global numbers, numbers2, oper, bar, Bar, result, Result
+    numbers = ''
+    numbers2 = ''
+    oper = ''
+    result = ''
+    bar = numbers + oper + numbers2
+    Bar.destroy()
+    Bar = Label(win, text=f'{bar}', font='bold')
+    Bar.pack(side='top')
+    Bar.update()
+    Result.destroy()
+    Result = Label(win, text=f'{result}', font='bold')
+    Result.pack(side='top')
+    Result.update()
+
+
 # Numbers
 
 one = Button(win, text='1', font='bold', command=one_, height=2, width=4)
@@ -321,7 +340,17 @@ divide.place(x=550, y=200)
 backspace = Button(win, text='Bksp', font='bold', command=backspace_, height=2, width=4)
 backspace.place(x=650, y=200)
 
+ac = Button(win, text='AC', font='bold', command=ac_, height=2, width=4)
+ac.place(x=500, y=200)
+
 equal = Button(win, text='=', font='bold', command=calc, height=5, width=4)
 equal.place(x=650, y=350)
+
+
+# Labels
+
+Result = Label(win, text='', font='bold')
+Result.pack(side='top')
+Result.update()
 
 win.mainloop()
