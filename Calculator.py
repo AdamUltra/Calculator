@@ -5,13 +5,18 @@ height = win.winfo_screenheight()
 win.geometry("%dx%d" % (width, height))
 win.title(" Calculator by AdamUltra ")
 numbers = ''
+i = ''
 numbers2 = ''
+numbers3 = ''
 oper = ''
+oper2 = ''
 bar = ''
 bar2 = ''
 numbers_list = []
-oper_list = []
 numbers2_list = []
+numbers3_list = []
+oper_list = []
+oper2_list = []
 operations = ['+', '-', '×', '÷']
 
 Bar = Label(win, text=f'{bar}', font='bold')
@@ -21,29 +26,127 @@ Bar.pack(side='top')
 # Calculate
 def calc():
     global numbers, numbers2, result, Result
-    if '+' in oper:
-        if '.' not in numbers and numbers2:
-            result = int(numbers) + int(numbers2)
-        elif '.' in numbers or numbers2:
-            result = float(numbers) + float(numbers2)
+    if len(oper2) == 0:
+        if '+' in oper:
+            if '.' not in numbers and numbers2:
+                result = int(numbers) + int(numbers2)
+            elif '.' in numbers or numbers2:
+                result = float(numbers) + float(numbers2)
 
-    elif '-' in oper:
-        if '.' not in numbers and numbers2:
-            result = int(numbers) - int(numbers2)
-        elif '.' in numbers or numbers2:
-            result = float(numbers) - float(numbers2)
+        elif '-' in oper:
+            if '.' not in numbers and numbers2:
+                result = int(numbers) - int(numbers2)
+            elif '.' in numbers or numbers2:
+                result = float(numbers) - float(numbers2)
 
-    elif '×' in oper:
-        if '.' not in numbers and numbers2:
-            result = int(numbers) * int(numbers2)
-        elif '.' in numbers or numbers2:
-            result = float(numbers) * float(numbers2)
+        elif '×' in oper:
+            if '.' not in numbers and numbers2:
+                result = int(numbers) * int(numbers2)
+            elif '.' in numbers or numbers2:
+                result = float(numbers) * float(numbers2)
 
-    elif '÷' in oper:
-        if '.' not in numbers and numbers2:
-            result = int(numbers) // int(numbers2)
-        elif '.' in numbers or numbers2:
-            result = float(numbers) / float(numbers2)
+        elif '÷' in oper:
+            if '.' not in numbers and numbers2:
+                result = int(numbers) // int(numbers2)
+            elif '.' in numbers or numbers2:
+                result = float(numbers) / float(numbers2)
+
+    elif len(oper2) == 1:
+        if '+' in oper and '-' in oper2:
+            if '.' not in numbers and numbers2:
+                result = int(numbers) + int(numbers2) - int(numbers3)
+            elif '.' in numbers or numbers2:
+                result = float(numbers) + float(numbers2) - float(numbers3)
+
+        elif '+' in oper and '+' in oper2:
+            if '.' not in numbers and numbers2:
+                result = int(numbers) + int(numbers2) + int(numbers3)
+            elif '.' in numbers or numbers2:
+                result = float(numbers) + float(numbers2) + float(numbers3)
+
+        elif '+' in oper and '×' in oper2:
+            if '.' not in numbers and numbers2:
+                result = int(numbers) + int(numbers2) * int(numbers3)
+            elif '.' in numbers or numbers2:
+                result = float(numbers) + float(numbers2) * float(numbers3)
+
+        elif '+' in oper and '÷' in oper2:
+            if '.' not in numbers and numbers2:
+                result = int(numbers) + int(numbers2) // int(numbers3)
+            elif '.' in numbers or numbers2:
+                result = float(numbers) + float(numbers2) / float(numbers3)
+
+        elif '-' in oper and '+' in oper2:
+            if '.' not in numbers and numbers2:
+                result = int(numbers) - int(numbers2) + int(numbers3)
+            elif '.' in numbers or numbers2:
+                result = float(numbers) - float(numbers2) + float(numbers3)
+
+        elif '-' in oper and '-' in oper2:
+            if '.' not in numbers and numbers2:
+                result = int(numbers) - int(numbers2) - int(numbers3)
+            elif '.' in numbers or numbers2:
+                result = float(numbers) - float(numbers2) - float(numbers3)
+
+        elif '-' in oper and '×' in oper2:
+            if '.' not in numbers and numbers2:
+                result = int(numbers) - int(numbers2) * int(numbers3)
+            elif '.' in numbers or numbers2:
+                result = float(numbers) - float(numbers2) * float(numbers3)
+
+        elif '-' in oper and '÷' in oper2:
+            if '.' not in numbers and numbers2:
+                result = int(numbers) - int(numbers2) // int(numbers3)
+            elif '.' in numbers or numbers2:
+                result = float(numbers) - float(numbers2) / float(numbers3)
+
+        elif '×' in oper and '+' in oper2:
+            if '.' not in numbers and numbers2:
+                result = int(numbers) * int(numbers2) + int(numbers3)
+            elif '.' in numbers or numbers2:
+                result = float(numbers) * float(numbers2) + float(numbers3)
+
+        elif '×' in oper and '-' in oper2:
+            if '.' not in numbers and numbers2:
+                result = int(numbers) * int(numbers2) - int(numbers3)
+            elif '.' in numbers or numbers2:
+                result = float(numbers) * float(numbers2) - float(numbers3)
+
+        elif '×' in oper and '×' in oper2:
+            if '.' not in numbers and numbers2:
+                result = int(numbers) * int(numbers2) * int(numbers3)
+            elif '.' in numbers or numbers2:
+                result = float(numbers) * float(numbers2) * float(numbers3)
+
+        elif '×' in oper and '÷' in oper2:
+            if '.' not in numbers and numbers2:
+                result = int(numbers) * int(numbers2) // int(numbers3)
+            elif '.' in numbers or numbers2:
+                result = float(numbers) * float(numbers2) / float(numbers3)
+
+        elif '÷' in oper and '×' in oper2:
+            if '.' not in numbers and numbers2:
+                result = int(numbers) // int(numbers2) * int(numbers3)
+            elif '.' in numbers or numbers2:
+                result = float(numbers) / float(numbers2) * float(numbers3)
+
+        elif '÷' in oper and '+' in oper2:
+            if '.' not in numbers and numbers2:
+                result = int(numbers) // int(numbers2) + int(numbers3)
+            elif '.' in numbers or numbers2:
+                result = float(numbers) / float(numbers2) + float(numbers3)
+
+        elif '÷' in oper and '-' in oper2:
+            if '.' not in numbers and numbers2:
+                result = int(numbers) // int(numbers2) - int(numbers3)
+            elif '.' in numbers or numbers2:
+                result = float(numbers) / float(numbers2) - float(numbers3)
+
+        elif '÷' in oper and '÷' in oper2:
+            if '.' not in numbers and numbers2:
+                result = int(numbers) // int(numbers2) // int(numbers3)
+            elif '.' in numbers or numbers2:
+                result = float(numbers) / float(numbers2) / float(numbers3)
 
     Result.destroy()
     Result = Label(win, text=f'{result}', font='bold')
@@ -53,12 +156,14 @@ def calc():
 
 # function numbers
 def one_():
-    global numbers, oper, numbers2, Bar, bar
+    global numbers, oper, numbers2, Bar, bar, numbers3, oper2
     if oper not in operations:
         numbers = numbers + '1'
-    else:
+    elif oper in operations and oper2 not in operations:
         numbers2 = numbers2 + '1'
-    bar = numbers + oper + numbers2
+    elif oper2 in operations:
+        numbers3 = numbers3 + '1'
+    bar = numbers + oper + numbers2 + oper2 + numbers3
     Bar.destroy()
     Bar = Label(win, text=f'{bar}', font='bold')
     Bar.pack(side='top')
@@ -66,12 +171,14 @@ def one_():
 
 
 def two_():
-    global numbers, numbers2, Bar, bar
+    global numbers, oper, numbers2, Bar, bar, numbers3, oper2
     if oper not in operations:
         numbers = numbers + '2'
-    else:
+    elif oper in operations and oper2 not in operations:
         numbers2 = numbers2 + '2'
-    bar = numbers + oper + numbers2
+    elif oper2 in operations:
+        numbers3 = numbers3 + '2'
+    bar = numbers + oper + numbers2 + oper2 + numbers3
     Bar.destroy()
     Bar = Label(win, text=f'{bar}', font='bold')
     Bar.pack(side='top')
@@ -79,12 +186,14 @@ def two_():
 
 
 def three_():
-    global numbers, numbers2, Bar, bar
+    global numbers, oper, numbers2, Bar, bar, numbers3, oper2
     if oper not in operations:
         numbers = numbers + '3'
-    else:
+    elif oper in operations and oper2 not in operations:
         numbers2 = numbers2 + '3'
-    bar = numbers + oper + numbers2
+    elif oper2 in operations:
+        numbers3 = numbers3 + '3'
+    bar = numbers + oper + numbers2 + oper2 + numbers3
     Bar.destroy()
     Bar = Label(win, text=f'{bar}', font='bold')
     Bar.pack(side='top')
@@ -92,12 +201,14 @@ def three_():
 
 
 def four_():
-    global numbers, numbers2, Bar, bar
+    global numbers, oper, numbers2, Bar, bar, numbers3, oper2
     if oper not in operations:
         numbers = numbers + '4'
-    else:
+    elif oper in operations and oper2 not in operations:
         numbers2 = numbers2 + '4'
-    bar = numbers + oper + numbers2
+    elif oper2 in operations:
+        numbers3 = numbers3 + '4'
+    bar = numbers + oper + numbers2 + oper2 + numbers3
     Bar.destroy()
     Bar = Label(win, text=f'{bar}', font='bold')
     Bar.pack(side='top')
@@ -105,12 +216,14 @@ def four_():
 
 
 def five_():
-    global numbers, numbers2, Bar, bar
+    global numbers, oper, numbers2, Bar, bar, numbers3, oper2
     if oper not in operations:
         numbers = numbers + '5'
-    else:
+    elif oper in operations and oper2 not in operations:
         numbers2 = numbers2 + '5'
-    bar = numbers + oper + numbers2
+    elif oper2 in operations:
+        numbers3 = numbers3 + '5'
+    bar = numbers + oper + numbers2 + oper2 + numbers3
     Bar.destroy()
     Bar = Label(win, text=f'{bar}', font='bold')
     Bar.pack(side='top')
@@ -118,12 +231,14 @@ def five_():
 
 
 def six_():
-    global numbers, numbers2, Bar, bar
+    global numbers, oper, numbers2, Bar, bar, numbers3, oper2
     if oper not in operations:
         numbers = numbers + '6'
-    else:
+    elif oper in operations and oper2 not in operations:
         numbers2 = numbers2 + '6'
-    bar = numbers + oper + numbers2
+    elif oper2 in operations:
+        numbers3 = numbers3 + '6'
+    bar = numbers + oper + numbers2 + oper2 + numbers3
     Bar.destroy()
     Bar = Label(win, text=f'{bar}', font='bold')
     Bar.pack(side='top')
@@ -131,12 +246,14 @@ def six_():
 
 
 def seven_():
-    global numbers, numbers2, Bar, bar
+    global numbers, oper, numbers2, Bar, bar, numbers3, oper2
     if oper not in operations:
         numbers = numbers + '7'
-    else:
+    elif oper in operations and oper2 not in operations:
         numbers2 = numbers2 + '7'
-    bar = numbers + oper + numbers2
+    elif oper2 in operations:
+        numbers3 = numbers3 + '7'
+    bar = numbers + oper + numbers2 + oper2 + numbers3
     Bar.destroy()
     Bar = Label(win, text=f'{bar}', font='bold')
     Bar.pack(side='top')
@@ -144,12 +261,14 @@ def seven_():
 
 
 def eight_():
-    global numbers, numbers2, Bar, bar
+    global numbers, oper, numbers2, Bar, bar, numbers3, oper2
     if oper not in operations:
         numbers = numbers + '8'
-    else:
+    elif oper in operations and oper2 not in operations:
         numbers2 = numbers2 + '8'
-    bar = numbers + oper + numbers2
+    elif oper2 in operations:
+        numbers3 = numbers3 + '8'
+    bar = numbers + oper + numbers2 + oper2 + numbers3
     Bar.destroy()
     Bar = Label(win, text=f'{bar}', font='bold')
     Bar.pack(side='top')
@@ -157,12 +276,14 @@ def eight_():
 
 
 def nine_():
-    global numbers, numbers2, Bar, bar
+    global numbers, oper, numbers2, Bar, bar, numbers3, oper2
     if oper not in operations:
         numbers = numbers + '9'
-    else:
+    elif oper in operations and oper2 not in operations:
         numbers2 = numbers2 + '9'
-    bar = numbers + oper + numbers2
+    elif oper2 in operations:
+        numbers3 = numbers3 + '9'
+    bar = numbers + oper + numbers2 + oper2 + numbers3
     Bar.destroy()
     Bar = Label(win, text=f'{bar}', font='bold')
     Bar.pack(side='top')
@@ -170,12 +291,14 @@ def nine_():
 
 
 def zero_():
-    global numbers, numbers2, Bar, bar
+    global numbers, oper, numbers2, Bar, bar, numbers3, oper2
     if oper not in operations:
         numbers = numbers + '0'
-    else:
+    elif oper in operations and oper2 not in operations:
         numbers2 = numbers2 + '0'
-    bar = numbers + oper + numbers2
+    elif oper2 in operations:
+        numbers3 = numbers3 + '0'
+    bar = numbers + oper + numbers2 + oper2 + numbers3
     Bar.destroy()
     Bar = Label(win, text=f'{bar}', font='bold')
     Bar.pack(side='top')
@@ -183,12 +306,14 @@ def zero_():
 
 
 def decimal_():
-    global numbers, numbers2, Bar, bar
-    if '+' or '-' not in oper:
+    global numbers, numbers2, Bar, bar, numbers3
+    if len(oper) == 0:
         numbers = numbers + '.'
-    else:
+    elif len(oper) == 1 and len(oper2) == 0:
         numbers2 = numbers2 + '.'
-    bar = numbers + oper + numbers2
+    elif len(oper2) == 1:
+        numbers3 = numbers3 + '.'
+    bar = numbers + oper + numbers2 + oper2 + numbers3
     Bar.destroy()
     Bar = Label(win, text=f'{bar}', font='bold')
     Bar.pack(side='top')
@@ -197,9 +322,13 @@ def decimal_():
 
 # Operator functions
 def add_():
-    global oper, Bar, bar
-    oper = '+'
-    bar = numbers + oper + numbers2
+    global oper, Bar, bar, oper2
+    if len(oper) == 0:
+        oper = '+'
+
+    elif len(oper) == 1:
+        oper2 = '+'
+    bar = numbers + oper + numbers2 + oper2 + numbers3
     Bar.destroy()
     Bar = Label(win, text=f'{bar}', font='bold')
     Bar.pack(side='top')
@@ -207,9 +336,13 @@ def add_():
 
 
 def subtract_():
-    global oper, Bar, bar
-    oper = '-'
-    bar = numbers + oper + numbers2
+    global oper, Bar, bar, oper2
+    if len(oper) == 0:
+        oper = '-'
+
+    elif len(oper) == 1:
+        oper2 = '-'
+    bar = numbers + oper + numbers2 + oper2 + numbers3
     Bar.destroy()
     Bar = Label(win, text=f'{bar}', font='bold')
     Bar.pack(side='top')
@@ -217,9 +350,13 @@ def subtract_():
 
 
 def multiply_():
-    global oper, Bar, bar
-    oper = '×'
-    bar = numbers + oper + numbers2
+    global oper, Bar, bar, oper2
+    if len(oper) == 0:
+        oper = '×'
+
+    elif len(oper) == 1:
+        oper2 = '×'
+    bar = numbers + oper + numbers2 + oper2 + numbers3
     Bar.destroy()
     Bar = Label(win, text=f'{bar}', font='bold')
     Bar.pack(side='top')
@@ -227,59 +364,65 @@ def multiply_():
 
 
 def divide_():
-    global oper, Bar, bar
-    oper = '÷'
-    bar = numbers + oper + numbers2
+    global oper, Bar, bar, oper2
+    if len(oper) == 0:
+        oper = '÷'
+
+    elif len(oper) == 1:
+        oper2 = '÷'
+    bar = numbers + oper + numbers2 + oper2 + numbers3
     Bar.destroy()
     Bar = Label(win, text=f'{bar}', font='bold')
     Bar.pack(side='top')
     Bar.update()
 
 
+# delete only one number
 def backspace_():
-    global Bar, bar, bar2, numbers2_list, numbers2, numbers_list, numbers, oper, oper_list
+    global Bar, bar, bar2, numbers2_list, numbers2, numbers_list, numbers, oper, oper_list, oper2, oper2_list, numbers3, numbers3_list, i
+    numbers3_list = list(numbers3)
     numbers2_list = list(numbers2)
     numbers_list = list(numbers)
     oper_list = list(oper)
+    oper2_list = list(oper2)
 
-    if len(numbers2_list) > 0:
-        del numbers2_list[len(numbers2_list) - 1]
-        numbers2 = ''
-        for i in numbers2_list:
-            numbers2.join(i)
-            bar = numbers + oper + numbers2
+    if len(numbers3) > 0:
+        i = numbers3_list[-1]
+        numbers3 = numbers3.replace(i, '')
+
+    elif len(oper2_list) > 0:
+        i = oper2_list[-1]
+        oper2 = oper2.replace(i, '')
+
+    elif len(numbers2_list) > 0:
+        i = numbers2_list[-1]
+        numbers2 = numbers2.replace(i, '')
 
     elif len(oper_list) > 0:
-        del oper_list[len(oper_list) - 1]
-        oper = ''
-        for i in oper_list:
-            oper.join(i)
-            bar = numbers + oper + numbers2
+        i = oper_list[-1]
+        oper = oper.replace(i, '')
 
     elif len(numbers_list) > 0:
-        del numbers_list[len(numbers_list) - 1]
-        numbers = ''
-        for i in numbers_list:
-            numbers.join(i)
-            bar = numbers + oper + numbers2
+        i = numbers_list[-1]
+        numbers = numbers.replace(i, '')
 
-    bar2 = list(bar)
-    del bar2[-1]
-    bar = ''
-    bar = bar.join(bar2)
+    bar = numbers + oper + numbers2 + oper2 + numbers3
     Bar.destroy()
     Bar = Label(win, text=f'{bar}', font='bold')
     Bar.pack(side='top')
     Bar.update()
 
 
+# delete all numbers
 def ac_():
-    global numbers, numbers2, oper, bar, Bar, result, Result
+    global numbers, numbers2, oper, bar, Bar, result, Result, oper2, numbers3
     numbers = ''
     numbers2 = ''
+    numbers3 = ''
     oper = ''
+    oper2 = ''
     result = ''
-    bar = numbers + oper + numbers2
+    bar = numbers + oper + numbers2 + oper2 + numbers3
     Bar.destroy()
     Bar = Label(win, text=f'{bar}', font='bold')
     Bar.pack(side='top')
