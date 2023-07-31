@@ -8,7 +8,10 @@ numbers = ''
 numbers2 = ''
 oper = ''
 bar = ''
-Bar2 = []
+bar2 = ''
+numbers_list = []
+oper_list = []
+numbers2_list = []
 operations = ['+', '-', '×', '÷']
 
 Bar = Label(win, text=f'{bar}', font='bold')
@@ -53,7 +56,6 @@ def one_():
         numbers = numbers + '1'
     else:
         numbers2 = numbers2 + '1'
-
     bar = numbers + oper + numbers2
     Bar.destroy()
     Bar = Label(win, text=f'{bar}', font='bold')
@@ -231,6 +233,44 @@ def divide_():
     Bar.pack(side='top')
     Bar.update()
 
+
+def backspace_():
+    global Bar, bar, bar2, numbers2_list, numbers2, numbers_list, numbers, oper, oper_list
+    numbers2_list = list(numbers2)
+    numbers_list = list(numbers)
+    oper_list = list(oper)
+
+    if len(numbers2_list) > 0:
+        del numbers2_list[len(numbers2_list) - 1]
+        numbers2 = ''
+        for i in numbers2_list:
+            numbers2.join(i)
+            bar = numbers + oper + numbers2
+
+    elif len(oper_list) > 0:
+        del oper_list[len(oper_list) - 1]
+        oper = ''
+        for i in oper_list:
+            oper.join(i)
+            bar = numbers + oper + numbers2
+
+    elif len(numbers_list) > 0:
+        del numbers_list[len(numbers_list) - 1]
+        numbers = ''
+        for i in numbers_list:
+            numbers.join(i)
+            bar = numbers + oper + numbers2
+
+    bar2 = list(bar)
+    del bar2[-1]
+    bar = ''
+    bar = bar.join(bar2)
+    Bar.destroy()
+    Bar = Label(win, text=f'{bar}', font='bold')
+    Bar.pack(side='top')
+    Bar.update()
+
+
 # Numbers
 
 one = Button(win, text='1', font='bold', command=one_, height=2, width=4)
@@ -277,6 +317,9 @@ multiply.place(x=600, y=200)
 
 divide = Button(win, text='÷', font='bold', command=divide_, height=2, width=4)
 divide.place(x=550, y=200)
+
+backspace = Button(win, text='Bksp', font='bold', command=backspace_, height=2, width=4)
+backspace.place(x=650, y=200)
 
 equal = Button(win, text='=', font='bold', command=calc, height=5, width=4)
 equal.place(x=650, y=350)
