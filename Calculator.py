@@ -390,19 +390,19 @@ def backspace_():
         i = numbers3_list[-1]
         numbers3 = numbers3.replace(i, '')
 
-    elif len(oper2_list) > 0:
+    elif len(oper2) > 0:
         i = oper2_list[-1]
         oper2 = oper2.replace(i, '')
 
-    elif len(numbers2_list) > 0:
+    elif len(numbers2) > 0:
         i = numbers2_list[-1]
         numbers2 = numbers2.replace(i, '')
 
-    elif len(oper_list) > 0:
+    elif len(oper) > 0:
         i = oper_list[-1]
         oper = oper.replace(i, '')
 
-    elif len(numbers_list) > 0:
+    elif len(numbers) > 0:
         i = numbers_list[-1]
         numbers = numbers.replace(i, '')
 
